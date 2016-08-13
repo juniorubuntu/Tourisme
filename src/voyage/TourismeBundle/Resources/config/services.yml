@@ -1,0 +1,7 @@
+parameters:
+#    voyage_tourisme.example.class: voyage\TourismeBundle\Example
+
+services:
+#    voyage_tourisme.example:
+#        class: %voyage_tourisme.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

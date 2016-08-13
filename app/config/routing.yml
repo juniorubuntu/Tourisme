@@ -1,0 +1,4 @@
+voyage_tourisme:
+    resource: "@voyageTourismeBundle/Resources/config/routing.yml"
+    prefix:   /
+

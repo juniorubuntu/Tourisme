@@ -1,0 +1,107 @@
+
+/* 
+    Created on : 11 août 2016, 18:09:32
+    Author     : atbr
+*/
+
+body{
+    background: rgb(79, 53, 32);
+}
+
+.menu{
+    width: 100%;
+    background: hsl(32, 89%, 31%);
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: large;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px rgb(49, 46, 41);
+}
+
+.menu li ul{
+    background: rgb(225, 225, 225);
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.menu ul li a{
+    color: #332303 !important;
+}
+
+.header{
+    margin: -10px;
+}
+
+.slides{
+    box-shadow: none !important;
+    margin: 0px;
+}
+
+.pub{
+    text-align: justify;
+    padding-top: 5px;
+}
+
+.carossel{
+    background: #c58942;
+}
+.pubS{
+    background: #c58942 !important;
+    color: #e8e8e8 !important;
+    font-weight: bold !important;
+}
+
+.image .img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -o-transition: all 1s ease; /* IE 9 */
+    -ms-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+    z-index: 1000;
+
+}
+
+.img:hover{
+    -webkit-transform:scale(4); /* Safari and Chrome */
+    -moz-transform:scale(4); /* Firefox */
+    -ms-transform:scale(4); /* IE 9 */
+    -o-transform:scale(4); /* Opera */
+    transform:scale(4);
+}
+
+.pied, .pied li, .pied li ul li a, .table-responsive tr td a{
+    list-style: none;
+    color: black;
+}
+
+.pied>li{
+    border-left: 1px solid #332303;
+    padding: 10px;
+}
+
+footer{
+    background: rgba(51, 34, 21, 0.65);
+    margin-top: -2%;
+    width: 100%;
+}
+
+.page{
+    z-index: 1;
+}
+
+.form-comment div{
+    padding: 5px;
+}
+
+div>h4{
+    font-size: 18px;
+    font-family: monospace;
+    color: #4f3520;
+    font-weight: bold;
+    text-shadow: 5px 5px 15px rgba(39, 37, 35, 0.98);
+    text-decoration: underline;
+}
+.detail>div>button{
+    font-weight: bold;
+    text-decoration: none;
+}

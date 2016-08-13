@@ -1,0 +1,3 @@
+voyage_tourisme_homepage:
+    pattern:  /
+    defaults: { _controller: voyageTourismeBundle:Accueil:index }
