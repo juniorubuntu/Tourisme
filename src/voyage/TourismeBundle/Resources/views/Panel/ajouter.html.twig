@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}voyageTourismeBundle:Paneau:ajouter{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Paneau:ajouter page</h1>
+    <div class="well">
+        <form method="post" {% if edit is not defined %} action="{{path('panel_ajouter')}}" {% else%} action="{{path('panel_ajouter',{'id':edit})}}" {% endif%} {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" {% if edit is not defined %} value="Ajouter" {% else%} value="Modifier" {% endif%}/>
+        </form>
+    </div>
+{% endblock %}

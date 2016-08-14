@@ -1,6 +1,22 @@
 voyage_tourisme_homepage:
     pattern:  /
     defaults: { _controller: voyageTourismeBundle:Accueil:index }
+    
+voyage_tourisme_panel:
+    pattern:  /Paneau/{id}
+    defaults: { _controller: voyageTourismeBundle:Paneau:index }
+    requirements:
+            id: \d+
+    
+voyage_tourisme_menu:
+    pattern:  /Menu/{id}/Sous-menu/{idSous}
+    defaults: { _controller: voyageTourismeBundle:Menu:index }
+    requirements:
+            id: \d+
+            idSous: \d+
+    
+    
+    
 
 menu_ajouter:
     pattern: administration/Menu/ajouter
@@ -17,5 +33,41 @@ menu_detail:
 menu_supprimer:
     pattern: administration/Menu/supprimer/{id}
     defaults: { _controller: voyageTourismeBundle:Menu:supprimer }
+    requirements:
+            id: \d+
+            
+panel_ajouter:
+    pattern: administration/Panel/ajouter
+    defaults: { _controller: voyageTourismeBundle:Paneau:ajouter }
+
+panel_liste:
+    pattern: administration/Panel/liste
+    defaults: { _controller: voyageTourismeBundle:Paneau:liste }
+
+panel_detail:
+    pattern: administration/Panel/detail
+    defaults: { _controller: voyageTourismeBundle:Paneau:detail }
+
+panel_supprimer:
+    pattern: administration/Panel/supprimer/{id}
+    defaults: { _controller: voyageTourismeBundle:Paneau:supprimer }
+    requirements:
+            id: \d+
+            
+affiche_ajouter:
+    pattern: administration/Affiche/ajouter
+    defaults: { _controller: voyageTourismeBundle:Affiche:ajouter }
+
+affiche_liste:
+    pattern: administration/Affiche/liste
+    defaults: { _controller: voyageTourismeBundle:Affiche:liste }
+
+affiche_detail:
+    pattern: administration/Affiche/detail
+    defaults: { _controller: voyageTourismeBundle:Affiche:detail }
+
+affiche_supprimer:
+    pattern: administration/Affiche/supprimer/{id}
+    defaults: { _controller: voyageTourismeBundle:Affiche:supprimer }
     requirements:
             id: \d+

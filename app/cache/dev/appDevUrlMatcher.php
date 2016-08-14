@@ -142,25 +142,61 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\AccueilController::indexAction',  '_route' => 'voyage_tourisme_homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/administration/Menu')) {
-            // menu_ajouter
-            if ($pathinfo === '/administration/Menu/ajouter') {
-                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::ajouterAction',  '_route' => 'menu_ajouter',);
+        // voyage_tourisme_panel
+        if (0 === strpos($pathinfo, '/Paneau') && preg_match('#^/Paneau/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'voyage_tourisme_panel')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\PaneauController::indexAction',));
+        }
+
+        // voyage_tourisme_menu
+        if (0 === strpos($pathinfo, '/Menu') && preg_match('#^/Menu/(?P<id>\\d+)/Sous\\-menu/(?P<idSous>\\d+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'voyage_tourisme_menu')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::indexAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/administration')) {
+            if (0 === strpos($pathinfo, '/administration/Menu')) {
+                // menu_ajouter
+                if ($pathinfo === '/administration/Menu/ajouter') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::ajouterAction',  '_route' => 'menu_ajouter',);
+                }
+
+                // menu_liste
+                if ($pathinfo === '/administration/Menu/liste') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::listeAction',  '_route' => 'menu_liste',);
+                }
+
+                // menu_detail
+                if ($pathinfo === '/administration/Menu/detail') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::detailAction',  '_route' => 'menu_detail',);
+                }
+
+                // menu_supprimer
+                if (0 === strpos($pathinfo, '/administration/Menu/supprimer') && preg_match('#^/administration/Menu/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'menu_supprimer')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::supprimerAction',));
+                }
+
             }
 
-            // menu_liste
-            if ($pathinfo === '/administration/Menu/liste') {
-                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::listeAction',  '_route' => 'menu_liste',);
-            }
+            if (0 === strpos($pathinfo, '/administration/Panel')) {
+                // panel_ajouter
+                if ($pathinfo === '/administration/Panel/ajouter') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\PaneauController::ajouterAction',  '_route' => 'panel_ajouter',);
+                }
 
-            // menu_detail
-            if ($pathinfo === '/administration/Menu/detail') {
-                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::detailAction',  '_route' => 'menu_detail',);
-            }
+                // panel_liste
+                if ($pathinfo === '/administration/Panel/liste') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\PaneauController::listeAction',  '_route' => 'panel_liste',);
+                }
 
-            // menu_supprimer
-            if (0 === strpos($pathinfo, '/administration/Menu/supprimer') && preg_match('#^/administration/Menu/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'menu_supprimer')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::supprimerAction',));
+                // panel_detail
+                if ($pathinfo === '/administration/Panel/detail') {
+                    return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\PaneauController::detailAction',  '_route' => 'panel_detail',);
+                }
+
+                // panel_supprimer
+                if (0 === strpos($pathinfo, '/administration/Panel/supprimer') && preg_match('#^/administration/Panel/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'panel_supprimer')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\PaneauController::supprimerAction',));
+                }
+
             }
 
         }

@@ -36,16 +36,19 @@ class AccueilController extends Controller {
         foreach ($listPanel as $panel) {
             $affiche = $this->getDoctrine()->getRepository('voyageTourismeBundle:Affiche')
                     ->findBy(array('paneau' => $panel));
+            foreach ($affiche as $aff) {
+                //$aff->setDescription(substr($aff->getDescription(), 0, 150));
+            }
             $listPanel[$i++]->setListAffiches($affiche);
         }
 
         $affiches = $this->getDoctrine()->getRepository('voyageTourismeBundle:Affiche')
                 ->findBy(array('paneau' => NULL));
 
-        return $this->render('voyageTourismeBundle:Vues:accueilTest.html.twig', array(
+        return $this->render('voyageTourismeBundle:Vues:accueil.html.twig', array(
                     'listeMenu' => $listeMenu,
                     'panels' => $listPanel,
-                    'affiches' => $affiches));
+                    'panelAffiche' => $affiches));
     }
 
 }

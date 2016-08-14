@@ -8,6 +8,47 @@ use voyage\TourismeBundle\Entity\Menu;
 
 class MenuController extends Controller {
 
+    public function indexAction($id, $idSous) {
+        $listeMenu = $this->getDoctrine()->getRepository('voyageTourismeBundle:Menu')
+                ->findBy(array('menuPere' => NULL));
+
+        $i = 0;
+        foreach ($listeMenu as $pere) {
+            $fils = $this->getDoctrine()->getRepository('voyageTourismeBundle:Menu')
+                    ->findBy(array('menuPere' => $pere));
+            $listeMenu[$i++]->setListFils($fils);
+        }
+
+        $listPanel = $this->getDoctrine()->getRepository('voyageTourismeBundle:Paneau')
+                ->findAll();
+
+        $i = 0;
+        foreach ($listPanel as $panel) {
+            $affiche = $this->getDoctrine()->getRepository('voyageTourismeBundle:Affiche')
+                    ->findBy(array('paneau' => $panel));
+
+            foreach ($affiche as $aff) {
+                //$aff->setDescription(substr($aff->getDescription(), 0, 150));
+            }
+
+            $listPanel[$i++]->setListAffiches($affiche);
+        }
+
+        $affiches = $this->getDoctrine()->getRepository('voyageTourismeBundle:Affiche')
+                ->findBy(array('paneau' => NULL));
+
+        $sousMenu = $this->getDoctrine()->getRepository('voyageTourismeBundle:Menu')
+                ->find($idSous);
+
+
+        return $this->render('voyageTourismeBundle:Vues:detailMenu.html.twig', array(
+                    'listeMenu' => $listeMenu,
+                    'panels' => $listPanel,
+                    'panelAffiche' => $affiches,
+                    'sousMenu' => $sousMenu,
+                    'menuPere' => $sousMenu->getMenuPere()));
+    }
+
     public function ajouterAction() {
         $menu = new Menu();
         $form = $this->get('form.factory')->create(new MenuType(), $menu);

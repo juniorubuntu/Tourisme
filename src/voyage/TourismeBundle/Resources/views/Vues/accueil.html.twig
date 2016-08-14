@@ -37,219 +37,94 @@
                 </div>
             </div>
         </div>
-        <nav class="menu navbar-default navbar-collapse">
+        <nav class="menu navbar-default navbar-collapse alert-info">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#">Accueil</a>
+                <li class="active accueil">
+                    <a href="{{path('voyage_tourisme_homepage')}}">Accueil</a>
                 </li>
-                <li class="dropdown">
-                    <a onclick='sousMenu("menu1", "test1");' class="menu1 dropdown-toggle" data-toggle="dropdown" href="#" role="button">Venez Découvrir
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu test1">
-                        <li><a href="#">Des Parcs</a></li>
-                        <li><a href="#">Des Musés</a></li>
-                        <li><a href="#">Des Barages</a></li>
-                        <li><a href="#">Les Chefferies</a></li>
-                        <li><a href="#">Les Coutumes et Habitas</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a onclick='sousMenu("menu2", "test2");' class="menu2 dropdown-toggle" data-toggle="dropdown" href="#" role="button">Vous Déplacer
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="test2 dropdown-menu">
-                        <li><a href="#">Voyager Par Vol</a></li>
-                        <li><a href="#">Voyager Par Bus de Transport</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a onclick='sousMenu("menu3", "test3");' class="menu3 dropdown-toggle" data-toggle="dropdown" href="#" role="button">Visite Guidée
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="test3 dropdown-menu">
-                        <li><a href="#">Assistance en Ligne</a></li>
-                        <li><a href="#">Assistance Physique</a></li>
-                        <li><a href="#">Assistance Par Carte</a></li>
-                        <li><a href="#">Localiser</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a onclick='sousMenu("menu4", "test4");' class="menu4 dropdown-toggle" data-toggle="dropdown" href="#" role="button">Séjourner
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="test4 dropdown-menu">
-                        <li><a href="#">Hébergement</a></li>
-                        <li><a href="#">Restauration</a></li>
-                        <li><a href="#">Points de Reccueils</a></li>
-                        <li><a href="#">Nos Tarifs</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a onclick='sousMenu("menu5", "test5");' class="menu5 dropdown-toggle" data-toggle="dropdown" href="#" role="button">Obtenez
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="test5 dropdown-menu">
-                        <li><a href="#">Des Réductions</a></li>
-                        <li><a href="#">Séjours Gratuits</a></li>
-                        <li><a href="#">Assistances Gratiutes</a></li>
-                        <li><a href="#">Voyages Gratuit</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a onclick='sousMenu("menu6", "test6");' class="menu6 dropdown-toggle" data-toggle="dropdown" href="#" role="button">A Propos
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="test6 dropdown-menu">
-                        <li><a href="#">Qui Sommes-Nous?</a></li>
-                        <li><a href="#">Nous Rejoindre?</a></li>
-                        <li><a href="#">Faites une Suggestion!</a></li>
-                        <li><a href="#">Autres</a></li>
-                    </ul>
-                </li>
+                {% for menu in listeMenu %}
+                    <li class="now{{menu.id}}">
+                        <a onclick='sousMenu("menu{{menu.id}}", "test{{menu.id}}");' class="menu{{menu.id}} dropdown-toggle" data-toggle="dropdown" href="#" role="button">{{ menu }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu test{{menu.id}}">
+                            {% for sousmenu in menu.listFils %}
+                                <li>
+                                    <a href="{{path('voyage_tourisme_menu', {'id':menu.id, 'idSous':sousmenu.id})}}">{{sousmenu}}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
             </ul>
         </nav>
         <div class=" well page col-md-10 col-md-offset-1">
-            <div class="col-md-3">
+            {% block position %}
+                <label style="border: 1px solid; color: #255625; height: 20px; margin-top: -1%;" class="col-md-12" >Vous êtes ici:<span class="glyphicon glyphicon-triangle-right" style="color: lightcoral">Accueil</span></label>
+            {% endblock %}
+            <div class="col-md-3" style="height: 1000px;">
                 <div class="pub_1 panel panel-warning">
-                    <div onclick="detail();" class="pubS col-md-12 expd panel-heading" style="cursor: pointer">
-                        Nos Services <span class="pull-right span_1 glyphicon glyphicon-triangle-bottom"></span>
-                    </div>
-                    <div class="col-md-12 pub pubS_1 panel panel-warning">
-                        <p>
-                        <div class="image">
-                            <img class="img" src="{{asset('images/test/head4.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
-                            <a style="font-size: 20px; color: rosybrown;" href="#">Voyages</a><br>Le graphiste designer, également, appelé infographiste, mode
+                    {% for panel in panels %}
+                        <div onclick="detail({{panel.id}});" class="pubS{{panel.id}} pubS col-md-12 expd panel-heading" style="cursor: pointer">
+                            {{panel | capitalize}}<span class="pull-right span_{{panel.id}} glyphicon glyphicon-triangle-bottom"></span>
                         </div>
-                        designer ou site designer, selon ses fonctions, il devra commencé par étudier la
-                        demande du client. Une fois l’idée définie, il doit la développer par une
-                        illustration. <a href="#">lire la suite...</a></p>
-                        <hr style="border: 1px solid rosybrown;">
-                        <p><div class="image">
-                            <img class="img" src="{{asset('images/test/head3.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
-                            <a style="font-size: 20px; color: rosybrown;" href="#">Tourisme</a><br>Le graphiste designer, également, appelé infographiste, mode
-                        </div>Le graphiste designer, également, appelé infographiste, mode
-                        designer ou site designer, selon ses fonctions, il devra commencé par étudier la
-                        demande du client. Une fois l’idée définie, il doit la développer par une
-                        illustration. <a href="#">lire la suite...</a></p>
-                        <hr style="border: 1px solid rosybrown;">
-                        <p><div class="image">
-                            <img class="img" src="{{asset('images/test/head2.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
-                            <a style="font-size: 20px; color: rosybrown;" href="#">Confort</a><br>Le graphiste designer, également, appelé infographiste, mode
-                        </div>Le graphiste designer, également, appelé infographiste, mode
-                        designer ou site designer, selon ses fonctions, il devra commencé par étudier la
-                        demande du client. Une fois l’idée définie, il doit la développer par une
-                        illustration. <a href="#">lire la suite...</a></p>
-                    </div>
-                </div>
-                <div class="pub panel panel-warning">
-                    <div class="pubS col-md-12  alert-warning panel-heading">
-                        Nos Agences
-                    </div>
-                    <div class="col-md-12 pub panel panel-warning">
-
-                    </div>
-                </div>
-                <div class="pub panel panel-warning">
-                    <div class="pubS col-md-12  alert-warning panel-heading">
-                        Nos Ambitions
-                    </div>
-                    <div class="col-md-12 pub panel panel-warning">
-
-                    </div>
+                        {% for affiche in panel.listAffiches %}
+                            <div class="col-md-12 pub pubS_{{panel.id}} panel panel-warning">
+                                <div class="image">
+                                    <img class="img" src="{{asset('images/test/head4.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
+                                    <a style="font-size: 20px; color: rosybrown;" href="{{path('voyage_tourisme_panel', {'id':panel.id})}}">{{affiche | capitalize}}</a><br>
+                                </div>
+                                &nbsp;&nbsp;{{affiche.description | capitalize | truncate(150, true, '')}}
+                                <a href="{{path('voyage_tourisme_panel', {'id':panel.id})}}"> <b>(...)lire la suite</b></a>
+                                <hr style="border: 1px solid rosybrown;">
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
-            <div class="col-md-9 " style="
-                 height: 345px;">
-                <div id="amazingslider-2" style="display:none;">
-                    <ul class="amazingslider-slides" style="display:none;" >
-                        <li><img src="{{asset('images/test/1.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/2.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/4.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/Head6.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/7.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/8.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/9.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/10.jpg')}}" /></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-9" style="text-align: justify">
-                <div class="col-md-12 detail">
-                    <h4>TRANSPORT & VOYAGES</h4>
-                    <div class="col-md-12">
-                        <p>
-                            <span style="font-size: 25px; font-weight: bold; font-family: constantia">&nbsp;&nbsp;&nbsp; N</span>ous organisons les voyages, circuits 
-                            touristiques seul ou en groupes pour 
-                            vous et les grands groupes de voyages. 
-                            Nos locaux sont situés à Buea dans la 
-                            région de sud ouest, au pied du Mont 
-                            Cameroun. Mais nos circuits couvrent 
-                            tous le Cameroun. Nos voyages sont des 
-                            itinéraires que nous avons deja parcourus 
-                            et connaissaons bien ce que nous proposons 
-                            aux touristes. Soucieux des la protection 
-                            de l'environnement et des sites touristiques, 
-                            nous prenons grand soin de preparer nos 
-                            voyages et safaris dans un esprit d'ouverture 
-                            de decouverte et de curiosité.
-                        </p><br>
-                        <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
-                        <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
-                        <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
-                        <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
+            {% block slider %}
+                <div class="col-md-9 " style="
+                     height: 345px;">
+                    <h4><marquee>Quelques images pour nous découvrir!</marquee></h4>
+                    <div id="amazingslider-2" style="display:none;">
+                        <ul class="amazingslider-slides" style="display:none;" >
+                            <li><img src="{{asset('images/slider/1.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/slider/head2.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/3.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/1.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/2.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/4.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/Head6.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/7.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/8.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/9.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/10.jpg')}}" /></li>
+                            <li><img src="{{asset('images/test/head3.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/5.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/slider/6.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/slider/7.jpeg')}}" /></li>
+                        </ul>
                     </div>
-                    <hr style="border: 1px solid white;">
                 </div>
-                <div class="col-md-12 detail">
-                    <h4>TOURISME & DECOUVERTE</h4>
-                    <div class="col-md-12">
-                        <p>
-                            <span style="font-size: 25px; font-weight: bold; font-family: constantia">&nbsp;&nbsp;&nbsp; N</span>ous organisons les voyages, circuits 
-                            touristiques seul ou en groupes pour 
-                            vous et les grands groupes de voyages. 
-                            Nos locaux sont situés à Buea dans la 
-                            région de sud ouest, au pied du Mont 
-                            Cameroun. Mais nos circuits couvrent 
-                            tous le Cameroun. Nos voyages sont des 
-                            itinéraires que nous avons deja parcourus 
-                            et connaissaons bien ce que nous proposons 
-                            aux touristes. Soucieux des la protection 
-                            de l'environnement et des sites touristiques, 
-                            nous prenons grand soin de preparer nos 
-                            voyages et safaris dans un esprit d'ouverture 
-                            de decouverte et de curiosité.
-                        </p>
-                    </div>
-                    <hr style="border: 1px solid white;">
-                </div>
-                <div class="col-md-12 detail">
-                    <h4>HEBERGEMENT & RESTAURATION</h4>
-                    <div class="col-md-12">
-                        <p>
-                            <span style="font-size: 25px; font-weight: bold; font-family: constantia">&nbsp;&nbsp;&nbsp; N</span>ous organisons les voyages, circuits 
-                            touristiques seul ou en groupes pour 
-                            vous et les grands groupes de voyages. 
-                            Nos locaux sont situés à Buea dans la 
-                            région de sud ouest, au pied du Mont 
-                            Cameroun. Mais nos circuits couvrent 
-                            tous le Cameroun. Nos voyages sont des 
-                            itinéraires que nous avons deja parcourus 
-                            et connaissaons bien ce que nous proposons 
-                            aux touristes. Soucieux des la protection 
-                            de l'environnement et des sites touristiques, 
-                            nous prenons grand soin de preparer nos 
-                            voyages et safaris dans un esprit d'ouverture 
-                            de decouverte et de curiosité.
-                        </p>
-                    </div>
-                    <hr style="border: 1px solid white;">
-                </div>
+            {% endblock%}
+            <div class="col-md-9 page_pub" style="text-align: justify;">
+                {% block affiche %}
+                    {% for affiche in panelAffiche %}
+                        <div class="col-md-12 detail">
+                            <h4>{{affiche | upper}}</h4>
+                            <div class="col-md-12">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{{affiche.description | capitalize}}
+                                </p><br>
+                                <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
+                            </div>
+                            <hr style="border: 1px solid white;">
+                        </div>
+                    {% endfor %}
+                {% endblock %}
                 <div class="col-md-12 detail panel modal-md">
                     <h4>LAISSEZ NOUS UN COMMENTAIRE</h4>
                     <form class="form-horizontal form-comment">
@@ -350,8 +225,8 @@
                 <a class="col-md-offset-1" href="#"><img src="{{asset('images/whatsapp.png')}}" height="35px" width="50px"/></a>
             </div>
         </div>
-        <div class="col-md-10 col-md-offset-1 well" style="font-size: 16px; font-family: constantia; height: 50px;">
-            <center><b>Design By <i><a href="http://www.facebook.com/virus.programming" target="blank">{{webmaster}}</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
+        <div class="col-md-10 col-md-offset-1 well" style="font-size: 12px; font-family: monospace; height: 50px;">
+            <center><b>Designed By <i><a href="http://www.facebook.com/virus.programming" target="blank">{{webmaster}}</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
         </div>
     </footer>
     <script src="{{asset('projetSlider/sliderengine/jquery.js')}}"></script>

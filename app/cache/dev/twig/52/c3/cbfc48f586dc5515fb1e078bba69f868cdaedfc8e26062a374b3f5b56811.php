@@ -10,6 +10,8 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
         $this->parent = false;
 
         $this->blocks = array(
+            'slider' => array($this, 'block_slider'),
+            'affiche' => array($this, 'block_affiche'),
         );
     }
 
@@ -139,7 +141,7 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
         echo "            </ul>
         </nav>
         <div class=\" well page col-md-10 col-md-offset-1\">
-            <div class=\"col-md-3\">
+            <div class=\"col-md-3\" style=\"height: 1000px;\">
                 <div class=\"pub_1 panel panel-warning\">
                     ";
         // line 64
@@ -173,8 +175,10 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
                 // line 71
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/head4.jpg"), "html", null, true);
                 echo "\" width=\"70px\" height=\"50px\" style=\"border-radius: 10px;\"/>
-                                    <a style=\"font-size: 20px; color: rosybrown;\" href=\"#\">";
+                                    <a style=\"font-size: 20px; color: rosybrown;\" href=\"";
                 // line 72
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("voyage_tourisme_panel", array("id" => $this->getAttribute((isset($context["panel"]) ? $context["panel"] : $this->getContext($context, "panel")), "id"))), "html", null, true);
+                echo "\">";
                 echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, (isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche"))), "html", null, true);
                 echo "</a><br>
                                 </div>
@@ -182,7 +186,10 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
                 // line 74
                 echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche")), "description")), "html", null, true);
                 echo "
-                                <a href=\"#\">lire la suite...</a>
+                                <a href=\"";
+                // line 75
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("voyage_tourisme_panel", array("id" => $this->getAttribute((isset($context["panel"]) ? $context["panel"] : $this->getContext($context, "panel")), "id"))), "html", null, true);
+                echo "\">lire la suite...</a>
                                 <hr style=\"border: 1px solid rosybrown;\">
                             </div>
                         ";
@@ -199,77 +206,15 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
         // line 80
         echo "                </div>
             </div>
-            <div class=\"col-md-9 \" style=\"
-                 height: 345px;\">
-                <div id=\"amazingslider-2\" style=\"display:none;\">
-                    <ul class=\"amazingslider-slides\" style=\"display:none;\" >
-                        <li><img src=\"";
-        // line 86
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/1.jpeg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 87
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/2.jpeg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 88
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/4.jpeg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 89
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/Head6.jpg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 90
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/7.jpg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 91
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/8.jpg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 92
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/9.jpg"), "html", null, true);
-        echo "\" /></li>
-                        <li><img src=\"";
-        // line 93
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/10.jpg"), "html", null, true);
-        echo "\" /></li>
-                    </ul>
-                </div>
-            </div>
-            <div class=\"col-md-9 page_pub\" style=\"text-align: justify;\">
+            ";
+        // line 82
+        $this->displayBlock('slider', $context, $blocks);
+        // line 99
+        echo "            <div class=\"col-md-9 page_pub\" style=\"text-align: justify;\">
                 ";
-        // line 98
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["affiches"]) ? $context["affiches"] : $this->getContext($context, "affiches")));
-        foreach ($context['_seq'] as $context["_key"] => $context["affiche"]) {
-            // line 99
-            echo "                    <div class=\"col-md-12 detail\">
-                        <h4>";
-            // line 100
-            echo twig_escape_filter($this->env, twig_upper_filter($this->env, (isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche"))), "html", null, true);
-            echo "</h4>
-                        <div class=\"col-md-12\">
-                            <p>
-                                ";
-            // line 103
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche")), "description"), "html", null, true);
-            echo "
-                            </p><br>
-                            <p><label style=\"color: #955408; font-family: constantia\"><i>48 Personnes ont aimé!</i></label>
-                                <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-comment\"></span> Commenter</button>
-                                <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-thumbs-up\"></span>J'aime</button>
-                                <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-share-alt\"></span>Partager</button></p>
-                        </div>
-                        <hr style=\"border: 1px solid white;\">
-                    </div>
-                ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['affiche'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 113
+        // line 100
+        $this->displayBlock('affiche', $context, $blocks);
+        // line 117
         echo "                <div class=\"col-md-12 detail panel modal-md\">
                     <h4>LAISSEZ NOUS UN COMMENTAIRE</h4>
                     <form class=\"form-horizontal form-comment\">
@@ -365,43 +310,126 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
             </ul>
             <div class=\"col-md-12\" style=\"margin-bottom: 5px;\">
                 <a class=\"col-md-offset-3\" href=\"#\"><img src=\"";
-        // line 207
+        // line 211
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/fb.png"), "html", null, true);
         echo "\" height=\"35px\" width=\"35px\"/></a>
                 <a class=\"col-md-offset-1\" href=\"#\"><img src=\"";
-        // line 208
+        // line 212
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/yahoo.png"), "html", null, true);
         echo "\" height=\"35px\" width=\"35px\"/></a>
                 <a class=\"col-md-offset-1\" href=\"#\"><img src=\"";
-        // line 209
+        // line 213
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/link.png"), "html", null, true);
         echo "\" height=\"35px\" width=\"35px\"/></a>
                 <a class=\"col-md-offset-1\" href=\"#\"><img src=\"";
-        // line 210
+        // line 214
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/whatsapp.png"), "html", null, true);
         echo "\" height=\"35px\" width=\"50px\"/></a>
             </div>
         </div>
-        <div class=\"col-md-10 col-md-offset-1 well\" style=\"font-size: 16px; font-family: constantia; height: 50px;\">
-            <center><b>Design By <i><a href=\"http://www.facebook.com/virus.programming\" target=\"blank\">";
-        // line 214
+        <div class=\"col-md-10 col-md-offset-1 well\" style=\"font-size: 12px; font-family: monospace; height: 50px;\">
+            <center><b>Designed By <i><a href=\"http://www.facebook.com/virus.programming\" target=\"blank\">";
+        // line 218
         echo twig_escape_filter($this->env, (isset($context["webmaster"]) ? $context["webmaster"] : $this->getContext($context, "webmaster")), "html", null, true);
         echo "</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
         </div>
     </footer>
     <script src=\"";
-        // line 217
+        // line 221
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("projetSlider/sliderengine/jquery.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 218
+        // line 222
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("projetSlider/sliderengine/amazingslider.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 219
+        // line 223
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("projetSlider/sliderengine/initslider-1.js"), "html", null, true);
         echo "\"></script>
 </html>";
+    }
+
+    // line 82
+    public function block_slider($context, array $blocks = array())
+    {
+        // line 83
+        echo "                <div class=\"col-md-9 \" style=\"
+                     height: 345px;\">
+                    <div id=\"amazingslider-2\" style=\"display:none;\">
+                        <ul class=\"amazingslider-slides\" style=\"display:none;\" >
+                            <li><img src=\"";
+        // line 87
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/1.jpeg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 88
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/2.jpeg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 89
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/4.jpeg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 90
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/test/Head6.jpg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 91
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/7.jpg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 92
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/8.jpg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 93
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/9.jpg"), "html", null, true);
+        echo "\" /></li>
+                            <li><img src=\"";
+        // line 94
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("images/slider/10.jpg"), "html", null, true);
+        echo "\" /></li>
+                        </ul>
+                    </div>
+                </div>
+            ";
+    }
+
+    // line 100
+    public function block_affiche($context, array $blocks = array())
+    {
+        // line 101
+        echo "                    ";
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["affiches"]) ? $context["affiches"] : $this->getContext($context, "affiches")));
+        foreach ($context['_seq'] as $context["_key"] => $context["affiche"]) {
+            // line 102
+            echo "                        <div class=\"col-md-12 detail\">
+                            <h4>";
+            // line 103
+            echo twig_escape_filter($this->env, twig_upper_filter($this->env, (isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche"))), "html", null, true);
+            echo "</h4>
+                            <div class=\"col-md-12\">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;";
+            // line 106
+            echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute((isset($context["affiche"]) ? $context["affiche"] : $this->getContext($context, "affiche")), "description")), "html", null, true);
+            echo "
+                                </p><br>
+                                <p><label style=\"color: #955408; font-family: constantia\"><i>48 Personnes ont aimé!</i></label>
+                                    <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-comment\"></span> Commenter</button>
+                                    <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-thumbs-up\"></span>J'aime</button>
+                                    <button class=\"pull-right col-md-2 btn btn-link \"><span class=\"glyphicon glyphicon-share-alt\"></span>Partager</button></p>
+                            </div>
+                            <hr style=\"border: 1px solid white;\">
+                        </div>
+                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['affiche'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 116
+        echo "                ";
     }
 
     public function getTemplateName()
@@ -416,6 +444,6 @@ class __TwigTemplate_52c3cbfc48f586dc5515fb1e078bba69f868cdaedfc8e26062a374b3f5b
 
     public function getDebugInfo()
     {
-        return array (  402 => 219,  398 => 218,  394 => 217,  388 => 214,  381 => 210,  377 => 209,  373 => 208,  369 => 207,  273 => 113,  257 => 103,  251 => 100,  248 => 99,  244 => 98,  236 => 93,  232 => 92,  228 => 91,  224 => 90,  220 => 89,  216 => 88,  212 => 87,  208 => 86,  200 => 80,  194 => 79,  183 => 74,  178 => 72,  174 => 71,  168 => 69,  164 => 68,  157 => 66,  150 => 65,  146 => 64,  139 => 59,  131 => 56,  122 => 53,  119 => 52,  115 => 51,  111 => 50,  99 => 47,  96 => 46,  92 => 45,  61 => 17,  56 => 15,  49 => 11,  45 => 10,  41 => 9,  37 => 8,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
+        return array (  432 => 116,  416 => 106,  410 => 103,  399 => 100,  390 => 94,  386 => 93,  382 => 92,  378 => 91,  370 => 89,  366 => 88,  356 => 83,  353 => 82,  347 => 223,  343 => 222,  339 => 221,  333 => 218,  326 => 214,  318 => 212,  218 => 117,  216 => 100,  213 => 99,  211 => 82,  207 => 80,  191 => 75,  180 => 72,  170 => 69,  152 => 65,  148 => 64,  124 => 53,  113 => 50,  58 => 15,  53 => 5,  23 => 1,  480 => 162,  474 => 161,  469 => 158,  461 => 155,  457 => 153,  453 => 151,  444 => 149,  440 => 148,  437 => 147,  435 => 146,  430 => 144,  427 => 143,  423 => 142,  413 => 134,  409 => 132,  407 => 102,  402 => 101,  398 => 129,  393 => 126,  387 => 122,  384 => 121,  381 => 120,  379 => 119,  374 => 90,  368 => 112,  365 => 111,  362 => 87,  360 => 109,  355 => 106,  341 => 105,  337 => 103,  322 => 213,  314 => 211,  312 => 98,  309 => 97,  305 => 95,  298 => 91,  294 => 90,  285 => 89,  283 => 88,  278 => 86,  268 => 85,  264 => 84,  258 => 81,  252 => 80,  247 => 78,  241 => 77,  229 => 73,  220 => 70,  214 => 69,  177 => 65,  169 => 60,  140 => 55,  132 => 51,  128 => 49,  107 => 36,  61 => 13,  273 => 96,  269 => 94,  254 => 92,  243 => 88,  240 => 86,  238 => 85,  235 => 74,  230 => 82,  227 => 81,  224 => 71,  221 => 77,  219 => 76,  217 => 75,  208 => 68,  204 => 72,  179 => 69,  159 => 66,  143 => 56,  135 => 53,  119 => 42,  102 => 32,  71 => 17,  67 => 15,  63 => 17,  59 => 6,  38 => 6,  201 => 79,  196 => 90,  183 => 82,  171 => 61,  166 => 68,  163 => 62,  158 => 67,  156 => 66,  151 => 63,  142 => 59,  138 => 54,  136 => 56,  121 => 52,  117 => 51,  105 => 40,  91 => 27,  62 => 23,  49 => 19,  94 => 45,  89 => 20,  85 => 25,  75 => 17,  68 => 14,  56 => 9,  26 => 6,  28 => 3,  24 => 3,  87 => 25,  31 => 6,  25 => 5,  21 => 1,  19 => 1,  93 => 28,  88 => 6,  78 => 21,  46 => 9,  44 => 11,  27 => 5,  79 => 18,  72 => 16,  69 => 11,  47 => 10,  40 => 7,  37 => 10,  22 => 2,  246 => 90,  157 => 56,  145 => 46,  139 => 45,  131 => 52,  123 => 47,  120 => 40,  115 => 43,  111 => 37,  108 => 36,  101 => 47,  98 => 46,  96 => 31,  83 => 25,  74 => 14,  66 => 24,  55 => 11,  52 => 21,  50 => 10,  43 => 9,  41 => 7,  35 => 7,  32 => 4,  29 => 3,  209 => 82,  203 => 78,  199 => 67,  193 => 73,  189 => 71,  187 => 74,  182 => 66,  176 => 71,  173 => 65,  168 => 72,  164 => 59,  162 => 57,  154 => 58,  149 => 51,  147 => 58,  144 => 49,  141 => 59,  133 => 56,  130 => 41,  125 => 44,  122 => 43,  116 => 41,  112 => 42,  109 => 34,  106 => 36,  103 => 32,  99 => 31,  95 => 28,  92 => 21,  86 => 28,  82 => 22,  80 => 19,  73 => 19,  64 => 10,  60 => 10,  57 => 11,  54 => 10,  51 => 11,  48 => 8,  45 => 17,  42 => 8,  39 => 8,  36 => 5,  33 => 6,  30 => 7,);
     }
 }

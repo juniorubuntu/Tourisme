@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}voyageTourismeBundle:Menu:liste{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Panel:liste page</h1>
+    <ol>
+        {% for paneau in listePanel %}
+            <li>{{ paneau }}</li>
+            {% endfor %}
+    </ol>
+{% endblock %}

@@ -2003,6 +2003,9 @@
         </argument>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.text"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.acme.demo"/>
       </call>
       <call method="addGlobal">
@@ -2322,6 +2325,9 @@
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+      <tag name="twig.extension"/>
     </service>
     <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
       <tag name="twig.extension"/>

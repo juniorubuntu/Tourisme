@@ -1,0 +1,29 @@
+{% extends "voyageTourismeBundle:Vues:accueil.html.twig" %}
+{% block slider %}
+    <div class="col-md-9 " style="
+         height: 345px;">
+        <h4><marquee>Quelques aperçues de: {{paneau | upper}}</marquee></h4>
+        <div id="amazingslider-2" style="display:none;">
+            <ul class="amazingslider-slides" style="display:none;" >
+
+            </ul>
+        </div>
+    </div>
+{% endblock%}
+{% block affiche %}
+    {% for affiche in paneauAffiche %}
+        <div class="col-md-12 detail">
+            <h4>{{affiche | upper}}</h4>
+            <div class="col-md-12">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{affiche.description | capitalize}}
+                </p><br>
+                <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
+                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
+                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
+                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
+            </div>
+            <hr style="border: 1px solid white;">
+        </div>
+    {% endfor %}
+{% endblock %}

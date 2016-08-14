@@ -59,7 +59,7 @@
             </ul>
         </nav>
         <div class=" well page col-md-10 col-md-offset-1">
-            <div class="col-md-3">
+            <div class="col-md-3" style="height: 1000px;">
                 <div class="pub_1 panel panel-warning">
                     {% for panel in panels %}
                         <div onclick="detail({{panel.id}});" class="pubS{{panel.id}} pubS col-md-12 expd panel-heading" style="cursor: pointer">
@@ -69,47 +69,51 @@
                             <div class="col-md-12 pub pubS_{{panel.id}} panel panel-warning">
                                 <div class="image">
                                     <img class="img" src="{{asset('images/test/head4.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
-                                    <a style="font-size: 20px; color: rosybrown;" href="#">{{affiche | capitalize}}</a><br>
+                                    <a style="font-size: 20px; color: rosybrown;" href="{{path('voyage_tourisme_panel', {'id':panel.id})}}">{{affiche | capitalize}}</a><br>
                                 </div>
                                 &nbsp;&nbsp;{{affiche.description | capitalize}}
-                                <a href="#">lire la suite...</a>
+                                <a href="{{path('voyage_tourisme_panel', {'id':panel.id})}}">lire la suite...</a>
                                 <hr style="border: 1px solid rosybrown;">
                             </div>
                         {% endfor %}
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-9 " style="
-                 height: 345px;">
-                <div id="amazingslider-2" style="display:none;">
-                    <ul class="amazingslider-slides" style="display:none;" >
-                        <li><img src="{{asset('images/test/1.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/2.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/4.jpeg')}}" /></li>
-                        <li><img src="{{asset('images/test/Head6.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/7.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/8.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/9.jpg')}}" /></li>
-                        <li><img src="{{asset('images/slider/10.jpg')}}" /></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-9 page_pub" style="text-align: justify;">
-                {% for affiche in affiches %}
-                    <div class="col-md-12 detail">
-                        <h4>{{affiche | upper}}</h4>
-                        <div class="col-md-12">
-                            <p>
-                                {{affiche.description}}
-                            </p><br>
-                            <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
-                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
-                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
-                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
-                        </div>
-                        <hr style="border: 1px solid white;">
+            {% block slider %}
+                <div class="col-md-9 " style="
+                     height: 345px;">
+                    <div id="amazingslider-2" style="display:none;">
+                        <ul class="amazingslider-slides" style="display:none;" >
+                            <li><img src="{{asset('images/test/1.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/2.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/4.jpeg')}}" /></li>
+                            <li><img src="{{asset('images/test/Head6.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/7.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/8.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/9.jpg')}}" /></li>
+                            <li><img src="{{asset('images/slider/10.jpg')}}" /></li>
+                        </ul>
                     </div>
-                {% endfor %}
+                </div>
+            {% endblock%}
+            <div class="col-md-9 page_pub" style="text-align: justify;">
+                {% block affiche %}
+                    {% for affiche in affiches %}
+                        <div class="col-md-12 detail">
+                            <h4>{{affiche | upper}}</h4>
+                            <div class="col-md-12">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;{{affiche.description | capitalize}}
+                                </p><br>
+                                <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
+                                    <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
+                            </div>
+                            <hr style="border: 1px solid white;">
+                        </div>
+                    {% endfor %}
+                {% endblock %}
                 <div class="col-md-12 detail panel modal-md">
                     <h4>LAISSEZ NOUS UN COMMENTAIRE</h4>
                     <form class="form-horizontal form-comment">
@@ -210,8 +214,8 @@
                 <a class="col-md-offset-1" href="#"><img src="{{asset('images/whatsapp.png')}}" height="35px" width="50px"/></a>
             </div>
         </div>
-        <div class="col-md-10 col-md-offset-1 well" style="font-size: 16px; font-family: constantia; height: 50px;">
-            <center><b>Design By <i><a href="http://www.facebook.com/virus.programming" target="blank">{{webmaster}}</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
+        <div class="col-md-10 col-md-offset-1 well" style="font-size: 12px; font-family: monospace; height: 50px;">
+            <center><b>Designed By <i><a href="http://www.facebook.com/virus.programming" target="blank">{{webmaster}}</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
         </div>
     </footer>
     <script src="{{asset('projetSlider/sliderengine/jquery.js')}}"></script>

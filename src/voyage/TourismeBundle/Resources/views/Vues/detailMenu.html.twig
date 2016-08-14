@@ -1,0 +1,23 @@
+{% extends "voyageTourismeBundle:Vues:accueil.html.twig" %}
+{% block position %}
+    <label style="border: 1px solid; color: #255625; height: 20px; margin-top: -1%;" class="col-md-12" >Vous êtes ici:<span style="color: #245580"> {{menuPere}}</span>--><span class="" style="color: lightcoral">{{sousMenu | capitalize}}</span></label>
+    {% endblock %}
+    {% block slider %}
+    <div class="col-md-9 " style="
+         height: 345px;">
+        <h4><marquee>Quelques aperçues: {{sousMenu}}</marquee></h4>
+        <h1>Pas d'images pour l'instant</h1>
+        <div id="amazingslider-2" style="display:none;">
+            <ul class="amazingslider-slides" style="display:none;" >
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        $('.now{{menuPere.id}}').addClass('active');
+        $('.accueil').removeClass('active');
+    </script>
+{% endblock%}
+{% block affiche %}
+    <h1>Pas de Contenu pour l'instant</h1>
+{% endblock %}
