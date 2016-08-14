@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}voyageTourismeBundle:Menu:liste{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Menu:liste page</h1>
+    <ol>
+        {% for menu in listeMenu %}
+            <li>{{ menu }}</li>
+            {% endfor %}
+    </ol>
+{% endblock %}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="icon" type="image/x-icon" href="{{asset('images/favicon.ico')}}" />
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/acceuilStyles.css') }}" type="text/css" />
+        <script type="text/javascript" src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bootstrap/js/animations.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+        <title>TSANAGA TOUR | Accueil</title>
+    </head>
+    <body class="">
+        <div class="col-md-12 carossel" style="background: url({{asset('images/tete.jpg')}}) no-repeat; background-size: 100% 100%;">
+            <div class="logo col-md-2 col-md-offset-1">
+                <img src="{{asset('images/logo.png')}}" height="160Opx"/>
+            </div>
+            <div class="accueil-message col-md-9" style="color: white; font-family: constantia;">
+                <div class="accueil-premier col-md-9">
+                    <h1>    
+                        <b><i>Voyagez avec nous!!!</i></b>
+                    </h1>
+                    <center><b style="font-size: 18px;"><i>&</i></b></center>
+                    <h3 class="pull-right" style="color: wheat;">    
+                        <b><i>Visitez le Grand-Nord Cameroun...</i></b>
+                    </h3>
+                </div>
+                <div class="lang col-md-3 pull-right" style="color: white; margin-top: 8%; ">
+                    <form class="form-group pull-right form-inline">
+                        <label class="control-label"><b>Langue:</b></label>
+                        <select class="form-control btn btn-warning">
+                            <option selected="selected">Français</option>
+                            <option >English</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <nav class="menu navbar-default navbar-collapse alert-info">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Accueil</a>
+                </li>
+                {% for menu in listeMenu %}
+                    <li>
+                        <a onclick='sousMenu("menu{{menu.id}}", "test{{menu.id}}");' class="menu{{menu.id}} dropdown-toggle" data-toggle="dropdown" href="#" role="button">{{ menu }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu test{{menu.id}}">
+                            {% for sousmenu in menu.listFils %}
+                                <li>
+                                    <a href="#">{{sousmenu}}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class=" well page col-md-10 col-md-offset-1">
+            <div class="col-md-3">
+                <div class="pub_1 panel panel-warning">
+                    {% for panel in panels %}
+                        <div onclick="detail({{panel.id}});" class="pubS{{panel.id}} pubS col-md-12 expd panel-heading" style="cursor: pointer">
+                            {{panel | capitalize}}<span class="pull-right span_{{panel.id}} glyphicon glyphicon-triangle-bottom"></span>
+                        </div>
+                        {% for affiche in panel.listAffiches %}
+                            <div class="col-md-12 pub pubS_{{panel.id}} panel panel-warning">
+                                <div class="image">
+                                    <img class="img" src="{{asset('images/test/head4.jpg')}}" width="70px" height="50px" style="border-radius: 10px;"/>
+                                    <a style="font-size: 20px; color: rosybrown;" href="#">{{affiche | capitalize}}</a><br>
+                                </div>
+                                &nbsp;&nbsp;{{affiche.description | capitalize}}
+                                <a href="#">lire la suite...</a>
+                                <hr style="border: 1px solid rosybrown;">
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-9 " style="
+                 height: 345px;">
+                <div id="amazingslider-2" style="display:none;">
+                    <ul class="amazingslider-slides" style="display:none;" >
+                        <li><img src="{{asset('images/test/1.jpeg')}}" /></li>
+                        <li><img src="{{asset('images/test/2.jpeg')}}" /></li>
+                        <li><img src="{{asset('images/test/4.jpeg')}}" /></li>
+                        <li><img src="{{asset('images/test/Head6.jpg')}}" /></li>
+                        <li><img src="{{asset('images/slider/7.jpg')}}" /></li>
+                        <li><img src="{{asset('images/slider/8.jpg')}}" /></li>
+                        <li><img src="{{asset('images/slider/9.jpg')}}" /></li>
+                        <li><img src="{{asset('images/slider/10.jpg')}}" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 page_pub" style="text-align: justify;">
+                {% for affiche in affiches %}
+                    <div class="col-md-12 detail">
+                        <h4>{{affiche | upper}}</h4>
+                        <div class="col-md-12">
+                            <p>
+                                {{affiche.description}}
+                            </p><br>
+                            <p><label style="color: #955408; font-family: constantia"><i>48 Personnes ont aimé!</i></label>
+                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-comment"></span> Commenter</button>
+                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-thumbs-up"></span>J'aime</button>
+                                <button class="pull-right col-md-2 btn btn-link "><span class="glyphicon glyphicon-share-alt"></span>Partager</button></p>
+                        </div>
+                        <hr style="border: 1px solid white;">
+                    </div>
+                {% endfor %}
+                <div class="col-md-12 detail panel modal-md">
+                    <h4>LAISSEZ NOUS UN COMMENTAIRE</h4>
+                    <form class="form-horizontal form-comment">
+                        <div class="form-inline col-md-12">
+                            <label class="col-md-2">Votre nom:<span style="color: red">*</span></label>
+                            <input  required class="form-control col-md-3" placeholder="Ex: Atemgoua"/>
+                        </div>
+                        <div class="form-inline col-md-12">
+                            <label class="col-md-2">Votre email:</label>
+                            <input class="form-control col-md-3" placeholder="Ex: juniorubuntu@gmail.com" />
+                        </div>
+                        <div class="form-inline col-md-12">
+
+                            <label class="col-md-2">Commentaire<span style="color: red">*</span></label>
+                            <textarea class="form-control" style="
+                                      height: 182px;
+                                      width: 303px;">Ex: Je suis prêt à rejoindre votre équipe de Développeurs.
+                            </textarea>
+                        </div>
+                        <div class="form-inline col-md-12">
+                            <label class="col-md-4">Etre informé des actualités</label>
+                            <input class="" type="checkbox" />
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary col-md-offset-1"><span class="glyphicon glyphicon-ok-sign"></span>Poster</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer class=" col-md-12" style="width: 100%;">
+        <div class="col-md-offset-1">
+            <ul class=" navbar-nav pied">
+                <li class="">
+                    <a href="#" class=" dropdown-toggle" data-toggle="dropdown" href="#" role="button">Partenaires</a>
+                    <ul class="">
+                        <li><a href="#">Agences de transport</a></li>
+                        <li><a href="#">Aéroports</a></li>
+                        <li><a href="#">Hotels</a></li>
+                        <li><a href="#">Services Traiteurs</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#" class=" dropdown-toggle" data-toggle="dropdown" href="#" role="button">Notre équipe
+                    </a>
+                    <ul class="">
+                        <li><a href="#">Des Inénieurs</a></li>
+                        <li><a href="#">Des Géographes</a></li>
+                        <li><a href="#">Des Guides Touristiques</a></li>
+                        <li><a href="#">Hotesses</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#" class=" dropdown-toggle" data-toggle="dropdown" href="#" role="button">Notre équipe
+                    </a>
+                    <ul class="">
+                        <li><a href="#">Des Inénieurs</a></li>
+                        <li><a href="#">Des Géographes</a></li>
+                        <li><a href="#">Des Guides Touristiques</a></li>
+                        <li><a href="#">Hotesses</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#" class=" dropdown-toggle" data-toggle="dropdown" href="#" role="button">Notre équipe
+                    </a>
+                    <ul class="">
+                        <li><a href="#">Des Inénieurs</a></li>
+                        <li><a href="#">Des Géographes</a></li>
+                        <li><a href="#">Des Guides Touristiques</a></li>
+                        <li><a href="#">Hotesses</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Réseaux sociaux
+                    </a>
+                    <table class="table-responsive">
+                        <tr class="">
+
+                            <td><a href="#">www.facebook.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">www.yahoo.com</a></a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">www.linkedin.com</a></a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">www.whatsapp.com</a></a></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <a class="col-md-offset-3" href="#"><img src="{{asset('images/fb.png')}}" height="35px" width="35px"/></a>
+                <a class="col-md-offset-1" href="#"><img src="{{asset('images/yahoo.png')}}" height="35px" width="35px"/></a>
+                <a class="col-md-offset-1" href="#"><img src="{{asset('images/link.png')}}" height="35px" width="35px"/></a>
+                <a class="col-md-offset-1" href="#"><img src="{{asset('images/whatsapp.png')}}" height="35px" width="50px"/></a>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1 well" style="font-size: 16px; font-family: constantia; height: 50px;">
+            <center><b>Design By <i><a href="http://www.facebook.com/virus.programming" target="blank">{{webmaster}}</a></i> 2016, July &copy; <i>All rights Reserved</i></b></center>
+        </div>
+    </footer>
+    <script src="{{asset('projetSlider/sliderengine/jquery.js')}}"></script>
+    <script src="{{asset('projetSlider/sliderengine/amazingslider.js')}}"></script>
+    <script src="{{asset('projetSlider/sliderengine/initslider-1.js')}}"></script>
+</html>

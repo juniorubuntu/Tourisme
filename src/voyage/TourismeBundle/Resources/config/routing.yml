@@ -1,3 +1,21 @@
 voyage_tourisme_homepage:
     pattern:  /
     defaults: { _controller: voyageTourismeBundle:Accueil:index }
+
+menu_ajouter:
+    pattern: administration/Menu/ajouter
+    defaults: { _controller: voyageTourismeBundle:Menu:ajouter }
+
+menu_liste:
+    pattern: administration/Menu/liste
+    defaults: { _controller: voyageTourismeBundle:Menu:liste }
+
+menu_detail:
+    pattern: administration/Menu/detail
+    defaults: { _controller: voyageTourismeBundle:Menu:detail }
+
+menu_supprimer:
+    pattern: administration/Menu/supprimer/{id}
+    defaults: { _controller: voyageTourismeBundle:Menu:supprimer }
+    requirements:
+            id: \d+

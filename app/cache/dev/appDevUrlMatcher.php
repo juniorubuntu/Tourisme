@@ -142,6 +142,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\AccueilController::indexAction',  '_route' => 'voyage_tourisme_homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/administration/Menu')) {
+            // menu_ajouter
+            if ($pathinfo === '/administration/Menu/ajouter') {
+                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::ajouterAction',  '_route' => 'menu_ajouter',);
+            }
+
+            // menu_liste
+            if ($pathinfo === '/administration/Menu/liste') {
+                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::listeAction',  '_route' => 'menu_liste',);
+            }
+
+            // menu_detail
+            if ($pathinfo === '/administration/Menu/detail') {
+                return array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::detailAction',  '_route' => 'menu_detail',);
+            }
+
+            // menu_supprimer
+            if (0 === strpos($pathinfo, '/administration/Menu/supprimer') && preg_match('#^/administration/Menu/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'menu_supprimer')), array (  '_controller' => 'voyage\\TourismeBundle\\Controller\\MenuController::supprimerAction',));
+            }
+
+        }
+
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

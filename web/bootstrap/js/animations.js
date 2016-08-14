@@ -1,22 +1,24 @@
-function detail() {
-    if ($('.pubS').hasClass('expd')) {
-        $('.pubS_1').hide("slow");
-        $('.pubS').removeClass('expd');
-        changeGlyphicon(1);
+function detail(id) {
+    if ($('.pubS' + id).hasClass('expd')) {
+        $('.pubS_' + id).hide("slow");
+        $('.pubS' + id).removeClass('expd');
+        //$('.page_pub').addClass('col-md-offset-3');
+        changeGlyphicon(1, id);
     } else {
-        $('.pubS_1').show("slow");
-        $('.pubS').addClass('expd');
-        changeGlyphicon(0);
+        $('.pubS_' + id).show("slow");
+        $('.pubS' + id).addClass('expd');
+        changeGlyphicon(0, id);
+        //$('.page_pub').removeClass('col-md-offset-3');
     }
 }
 
-function changeGlyphicon(a) {
+function changeGlyphicon(a, id) {
     if (a) {
-        $('.span_1').removeClass('glyphicon-triangle-bottom');
-        $('.span_1').addClass('glyphicon-triangle-right');
+        $('.span_' + id).removeClass('glyphicon-triangle-bottom');
+        $('.span_' + id).addClass('glyphicon-triangle-right');
     } else {
-        $('.span_1').removeClass('glyphicon-triangle-right');
-        $('.span_1').addClass('glyphicon-triangle-bottom');
+        $('.span_' + id).removeClass('glyphicon-triangle-right');
+        $('.span_' + id).addClass('glyphicon-triangle-bottom');
     }
 }
 
